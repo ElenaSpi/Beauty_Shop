@@ -1,0 +1,25 @@
+﻿@{
+    ViewBag.Title = "About";
+}
+
+<h1 style="font-weight:bolder">Hello there! </h1>
+<p>
+    Thank you for using our services. If you choose to become a VIP Client you will have access to additional information
+    about skincare products. We will try to keep these informations updated and easy to use.
+</p>
+<br />
+<br />
+
+@Html.ActionLink("Back", "Index", "Home", new { @class = "btn btn-pr" })
+
+<style>
+    .btn-pr {
+        background-color: #008080;
+        color: white;
+    }
+
+        .btn-pr:hover {
+            background-color: #008080;
+            color: white !important;
+        }
+</style>

@@ -1,0 +1,179 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Beauty Shop</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+<style>
+     #brand {
+            font-weight:bold;
+            color:white;
+        }
+    .i-extra {
+        width:  100px;
+        height: 100px;
+        padding: 15px;
+        background-color: white;
+        color: rgb(51, 122, 183);
+    }
+
+        .space {
+            padding-top:5px;
+        }
+        .space-n {
+            padding-top:10px;
+        }
+        .space-m {
+            padding-top:4px;
+        }
+        .navbar {
+            background-color: rgb(91,59,140);
+        }
+
+        #modified {
+            background-color: rgb(1,121,111);
+            border-color: rgb(1,121,111);
+        }
+
+        .text-new {
+            color:white !important;
+        }
+        .text-new:hover {
+            color: ghostwhite !important;
+        } 
+
+/* body {
+     background: linear-gradient(0deg, #fff, 50%, #DEEEFE);
+     font-family: 'Rubik', sans-serif;
+     background: #455A64;
+ }
+
+ .container-fluid {
+     overflow: hidden;
+     margin-top: 250px;
+     background: #262626;
+     color: #627482 !important;
+     margin-bottom: 0;
+     padding-bottom: 0
+ }
+*/
+
+
+</style>
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("Beauty Shop", "Index", "Home", new { area = "" }, new { @class = "navbar-brand", id = "brand" })
+            </div>
+            <div class="navbar-collapse collapse text-new">
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("Products", "Index", "Products", new { area = "" }, new { @class = "text-new" })</li>
+                    <li>@Html.ActionLink("Clients", "Index", "Clients", new { area = "" }, new { @class = "text-new" })</li>
+
+                </ul>
+                @Html.Partial("_LoginPartial")
+            </div>
+        </div>
+    </div>
+
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+    </div>
+
+
+    <footer class="text-center py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <!-- Map section -->
+                    <div class="container-fluid" style="padding: 0">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2964.820758468962!2d21.407359215212978!3d42.00412216549769!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x13541443605aa4ab%3A0x33d56647e5b87264!2sFaculty+of+Computer+Science+%26+Engineering!5e0!3m2!1sen!2smk!4v1521819335798"
+                                height="385" width="600" frameborder="0" style="border:solid; border-color:forestgreen" allowfullscreen></iframe>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div style="margin-left:50px">
+                        <img src="~/images/photo.png" alt="footer_logo" style="max-width:500px" />
+                        <p>
+                            Thank you for using our website. Beauty shop has always been here to fulfull your wishes.
+                        </p>
+                        <div class="footer-social-link">
+                            <h4>Follow us</h4>
+                            <span>
+                                <i class="fa fa-facebook"></i>
+                            </span>
+                            <span>
+                                <i class="fa fa-twitter"></i>
+                            </span>
+                            <span>
+                                <i class="fa fa-google-plus"></i>
+                            </span>
+                            <span>
+                                <i class="fa fa-linkedin"></i>
+                            </span>
+                            <span>
+                                <i class="fa fa-instagram"></i>
+                            </span>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+       </div>
+    </footer>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>
+
+<style>
+    i {
+        padding-top:13px;
+        display: block;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        text-align: center;
+        line-height: 40px;
+        background: #000;
+        margin-right: 5px;
+        color: #fff;
+    }
+
+    i.fa-facebook {
+        background-color: #3B5998;
+    }
+
+    i.fa-twitter {
+        background-color: #55ACEE;
+    }
+
+   i.fa-google-plus {
+        background-color: #DD4B39;
+    }
+
+     i.fa-linkedin {
+        background-color: #0976B4;
+    }
+
+    i.fa-instagram {
+        background-color: #B7242A;
+    }
+
+    h4 {
+        font-weight:bolder;
+    }
+</style>

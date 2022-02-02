@@ -1,0 +1,28 @@
+﻿@{
+    ViewBag.Title = "Contact Us";
+}
+<h2 style="font-weight:bolder">@ViewBag.Title</h2>
+
+<address>
+    <div>
+        "Rugjer Boshkovikj" 16<br />
+        1000 Skopje, Republic of Macedonia<br />
+        <span class="fa fa-phone"></span> (+389) 123-4567 <br />
+        <span class="fa fa-envelope-o space"></span>&nbsp;<span class="space  mx-1" style="font-weight:bolder; padding-top:10px;">sample@finki.ukim.mk</span>
+    </div>
+</address>
+
+<br />
+@Html.ActionLink("Back", "Index", "Home", new { @class = "btn btn-pr" })
+
+<style>
+    .btn-pr {
+        background-color: #008080;
+        color: white;
+    }
+
+        .btn-pr:hover {
+            background-color: #008080;
+            color: white !important;
+        }
+</style>

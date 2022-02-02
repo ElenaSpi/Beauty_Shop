@@ -1,0 +1,99 @@
+﻿@model IEnumerable<it_project.Models.Client>
+
+@{
+    ViewBag.Title = "Clients";
+}
+
+<style>
+    .btn-new {
+        color: white;
+        background-color: lightslategray;
+    }
+
+        .btn-new:hover {
+            color: white;
+            background-color: lightslategray;
+        }
+   
+    .btn-create {
+        background-color: #008080;
+        color: white;
+    }
+
+    .btn-create:hover {
+        background-color: rgb(1,121,111);
+        color: white;
+    }
+</style>
+
+<h2 style="padding-bottom:10px; font-weight:bolder">Clients</h2>
+@if (User.IsInRole("Administrator"))
+{
+    <p style="padding-bottom:10px">
+        @Html.ActionLink("Create New Client", "Create", null, new { @class = "btn btn-create"})
+    </p>
+}
+<table class="table" id="clientsTable">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Age)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Age)
+                </td>
+                <td>
+                    @Html.ActionLink("Details", "Details", new { id = item.ID }, new { @class = "btn btn-new" })
+                    <span>&nbsp;</span>
+                    @if (User.IsInRole("Administrator"))
+                    {
+                        @Html.ActionLink("Edit", "Edit", new { id = item.ID }, new { @class = "btn btn-new" })
+                        <span>&nbsp;</span>
+                        <button data-client-id="@item.ID" class="btn btn-danger js-delete">Delete</button>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section scripts{
+    <script>
+        $(function () {
+            var table = $(".table").DataTable();
+            $(".js-delete").on("click", function () {
+                var button = $(this);
+                bootbox.confirm("Are you sure you want to delete this client?", function (result) {
+                    if (result) {
+                        $.ajax({
+                            url: "/Clients/Delete/" + button.attr("data-client-id"),
+                            method: "GET",
+                            success: function () {
+                                table.row(button.parents("tr")).remove().draw();
+                            }
+                        });
+                    }
+                })
+            });
+        });
+    </script>
+}

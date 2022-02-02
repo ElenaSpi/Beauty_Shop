@@ -1,0 +1,33 @@
+﻿@model it_project.Models.ClientProduct
+
+@{
+    ViewBag.Title = "InsertNewClient";
+}
+
+<h2>Insert a new client for product: @Model.product.Name</h2>
+
+@using (Html.BeginForm("InsertNewClient", "Products"))
+{
+    <div class="form-group">
+        @Html.DropDownListFor(m => m.ClientID, new SelectList(Model.clients, "ID", "Name"), new { @class = "form-control" })
+    </div>
+    @Html.HiddenFor(m => m.ProductID)
+
+    <div class="form-group">
+        <button type="submit" class="btn btn-newer">Add client to product</button>
+    </div>
+}
+
+<style>
+    .btn-newer {
+        color: white;
+        background-color: #008080;
+    }
+
+        .btn-newer:hover {
+            color: white;
+            background-color: #008080;
+        }
+</style>
+
+

@@ -1,0 +1,140 @@
+﻿@model it_project.Models.Product
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2 style="font-weight:bolder">Details for product: @Model.Name</h2>
+
+<div>
+    <div class="row">
+        <div class="col-md-6">
+            <hr />
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.Name)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Name)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Price)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Price)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Category)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Category)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Rating)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Rating)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.ImageURL)
+                </dt>
+
+                <dd>
+                    <img src="@Model.ImageURL" style="max-width:300px" />
+                </dd>
+
+            </dl>
+        </div>
+
+        @if (User.IsInRole("Administrator"))
+        {
+            <div class="col-md-6">
+                <hr />
+                <img src="~/images/skin.jpg" style="max-width:500px; padding-left:25px;" />
+            </div>
+        }
+        @if (User.IsInRole("VIP Client"))
+        {
+            <div class="col-md-6">
+                <hr />
+                <img src="~/images/skin.jpg" style="max-width:500px; padding-left:25px;" />
+            </div>
+        }
+
+    </div>
+    <br />
+    <div class="row" style="padding-left:20px;">
+        @if (User.IsInRole("Administrator"))
+        {
+            <h2 style="color: black; font-weight:bolder">Clients that bought @Model.Name:</h2>
+            <div>
+                <ul>
+                    @foreach (var client in Model.clients)
+                    {
+                        <li>
+                        <a href="/Clients/Details/@client.ID" style="font-weight:bolder; font-size:15px; color:darkcyan">@client.Name - @client.Age years old</a>
+                        </li>
+                    }
+                </ul>
+            </div>
+            <br />
+            <a class="btn btn-add fix" href="/Products/InsertNewClient/@Model.ID">Insert client to product</a>
+        }
+
+    <p class="fix">
+        @if (User.IsInRole("Administrator"))
+        {
+            @Html.ActionLink("Edit", "Edit", new { id = Model.ID }, new { @class = "btn btn-newer" }) <span>&nbsp;</span>
+        }
+        @if (User.IsInRole("Editor"))
+        {
+            @Html.ActionLink("Edit", "Edit", new { id = Model.ID }, new { @class = "btn btn-newer" }) <span>&nbsp;</span>
+        }
+        @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-newer" })
+
+
+    </p>
+    </div>
+
+</div>
+
+
+<style>
+    .fix {
+        padding-top: 10px;
+    }
+
+    .btn-newer {
+        color: white;
+        background-color: lightslategray;
+    }
+
+        .btn-newer:hover {
+            color: white;
+            background-color: lightslategray;
+        }
+
+    .btn-add {
+        background-color: rgb(1,121,111);
+        color: white;
+    }
+
+        .btn-add:hover {
+            background-color: rgb(1,121,111);
+            color: white;
+        }
+
+    ul {
+       list-style-type:square;
+       
+     }
+</style>
+
